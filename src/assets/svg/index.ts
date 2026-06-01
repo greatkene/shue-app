@@ -11,4 +11,5 @@
 
 export default {
   CheckValid: require('./CheckValid').default,
+  Google: require('./Google').default,
 };

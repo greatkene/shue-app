@@ -7,7 +7,7 @@ export default function MainRouter() {
   const isLoading = false;
   const isAuthenticated = false;
   const accessToken = null;
-  const _hasHydrated = false;
+  const _hasHydrated = true;
 
   if (!_hasHydrated || isLoading) {
     return (

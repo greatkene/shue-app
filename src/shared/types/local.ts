@@ -1,8 +1,9 @@
-import { TypographyVariant } from "../theme/tokens";
+import { ButtonVariant, TypographyVariant } from "../theme/tokens";
 import type {
   StyleProp,
   TextInputProps,
   TextProps,
+  TouchableOpacityProps,
   ViewStyle,
 } from "react-native";
 
@@ -29,8 +30,62 @@ export interface AppTextProps extends Omit<TextProps, "style"> {
   style?: TextProps["style"];
 }
 
-export interface IconProps {
-    fill?: string;
-    [key: string]: unknown;
+export interface AppButtonProps extends TouchableOpacityProps {
+  variant?: ButtonVariant;
+  icon?: React.ReactNode;
+  loading?: boolean;
+  textStyle?: TextProps["style"];
 }
-  
+
+export interface AuthHeaderProps {
+  title: string;
+  description: string;
+}
+
+export interface AppLabelProps extends Omit<TextProps, "style"> {
+  label: string;
+  required?: boolean;
+  style?: TextProps["style"];
+}
+
+export interface AppTextInputProps extends Omit<TextInputProps, "style"> {
+  label?: string;
+  required?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  error?: string;
+  containerStyle?: StyleProp<ViewStyle>;
+  inputContainerStyle?: StyleProp<ViewStyle>;
+  style?: TextInputProps["style"];
+}
+
+export interface AppCheckboxProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  label?: string;
+  error?: string;
+  style?: StyleProp<ViewStyle>;
+}
+
+export interface AppDividerProps {
+  label?: string;
+  style?: StyleProp<ViewStyle>;
+}
+
+export interface AppBackButtonProps extends TouchableOpacityProps {
+  label: string;
+}
+
+export interface AppOtpInputProps {
+  value: string;
+  onChange: (value: string) => void;
+  length?: number;
+  error?: string;
+  autoFocus?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
+}
+
+export interface IconProps {
+  fill?: string;
+  [key: string]: unknown;
+}
