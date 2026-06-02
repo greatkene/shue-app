@@ -5,7 +5,7 @@ import { Feather } from "@expo/vector-icons";
 import { Controller } from "react-hook-form";
 import AuthHeader from "@/shared/ui/atom/AuthHeader";
 import AppButton from "@/shared/ui/atom/AppButton";
-import { AppText, AppTextInput } from "@/shared/ui/atom";
+import { AppKeyboardAvoidingView, AppText, AppTextInput } from "@/shared/ui/atom";
 import {
   COLORS,
   Sizes,
@@ -39,116 +39,120 @@ const Login = () => {
 
   return (
     <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={styles.scrollContent}
-      >
-        <AuthHeader
-          title="Login"
-          description="Input Your Details To Get Started"
-        />
-
-        <View style={styles.body}>
-          <LoginMethodTabs
-            tabs={TABS}
-            value={method}
-            onChange={handleChangeMethod}
+      <AppKeyboardAvoidingView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={styles.scrollContent}
+        >
+          <AuthHeader
+            title="Login"
+            description="Input Your Details To Get Started"
           />
 
-          <View style={styles.form}>
-            <Controller
-              control={control}
-              name="identifier"
-              render={({ field: { value, onChange, onBlur } }) => (
-                <AppTextInput
-                  label={isPhone ? "Phone Number" : "Email Address"}
-                  required
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  error={errors.identifier?.message}
-                  placeholder={
-                    isPhone ? "Enter your number" : "Enter your email"
-                  }
-                  keyboardType={isPhone ? "phone-pad" : "email-address"}
-                  textContentType={isPhone ? "telephoneNumber" : "emailAddress"}
-                  autoComplete={isPhone ? "tel" : "email"}
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  autoFocus
-                  leftIcon={
-                    <Feather
-                      name={isPhone ? "phone" : "mail"}
-                      size={ICON_SIZE}
-                      color={getColorAlphaChannel("textSecondary")}
-                    />
-                  }
-                />
-              )}
+          <View style={styles.body}>
+            <LoginMethodTabs
+              tabs={TABS}
+              value={method}
+              onChange={handleChangeMethod}
             />
 
-            <Controller
-              control={control}
-              name="password"
-              render={({ field: { value, onChange, onBlur } }) => (
-                <AppTextInput
-                  label="Enter Password"
-                  required
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  error={errors.password?.message}
-                  placeholder="Enter your password"
-                  secureTextEntry={!isPasswordVisible}
-                  textContentType="password"
-                  autoComplete="password"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  leftIcon={
-                    <Feather
-                      name="lock"
-                      size={ICON_SIZE}
-                      color={getColorAlphaChannel("textSecondary")}
-                    />
-                  }
-                  rightIcon={
-                    <Feather
-                      name={isPasswordVisible ? "eye" : "eye-off"}
-                      size={ICON_SIZE}
-                      color={getColorAlphaChannel("textSecondary")}
-                      onPress={togglePasswordVisibility}
-                    />
-                  }
-                />
-              )}
-            />
-          </View>
-
-          <AppText
-            variant="h6"
-            color={COLORS.text}
-            style={styles.forgotPassword}
-            onPress={handleForgotPassword}
-          >
-            Forgotten Password ?
-          </AppText>
-
-          <AppButton
-            onPress={handleLogin}
-            style={styles.loginButton}
-            icon={
-              <Feather
-                name="arrow-right"
-                size={ICON_SIZE}
-                color={COLORS.white}
+            <View style={styles.form}>
+              <Controller
+                control={control}
+                name="identifier"
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <AppTextInput
+                    label={isPhone ? "Phone Number" : "Email Address"}
+                    required
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    error={errors.identifier?.message}
+                    placeholder={
+                      isPhone ? "Enter your number" : "Enter your email"
+                    }
+                    keyboardType={isPhone ? "phone-pad" : "email-address"}
+                    textContentType={
+                      isPhone ? "telephoneNumber" : "emailAddress"
+                    }
+                    autoComplete={isPhone ? "tel" : "email"}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    autoFocus
+                    leftIcon={
+                      <Feather
+                        name={isPhone ? "phone" : "mail"}
+                        size={ICON_SIZE}
+                        color={getColorAlphaChannel("textSecondary")}
+                      />
+                    }
+                  />
+                )}
               />
-            }
-          >
-            Login
-          </AppButton>
-        </View>
-      </ScrollView>
+
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <AppTextInput
+                    label="Enter Password"
+                    required
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    error={errors.password?.message}
+                    placeholder="Enter your password"
+                    secureTextEntry={!isPasswordVisible}
+                    textContentType="password"
+                    autoComplete="password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    leftIcon={
+                      <Feather
+                        name="lock"
+                        size={ICON_SIZE}
+                        color={getColorAlphaChannel("textSecondary")}
+                      />
+                    }
+                    rightIcon={
+                      <Feather
+                        name={isPasswordVisible ? "eye" : "eye-off"}
+                        size={ICON_SIZE}
+                        color={getColorAlphaChannel("textSecondary")}
+                        onPress={togglePasswordVisibility}
+                      />
+                    }
+                  />
+                )}
+              />
+            </View>
+
+            <AppText
+              variant="h6"
+              color={COLORS.text}
+              style={styles.forgotPassword}
+              onPress={handleForgotPassword}
+            >
+              Forgotten Password ?
+            </AppText>
+
+            <AppButton
+              onPress={handleLogin}
+              style={styles.loginButton}
+              icon={
+                <Feather
+                  name="arrow-right"
+                  size={ICON_SIZE}
+                  color={COLORS.white}
+                />
+              }
+            >
+              Login
+            </AppButton>
+          </View>
+        </ScrollView>
+      </AppKeyboardAvoidingView>
     </SafeAreaView>
   );
 };

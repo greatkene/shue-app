@@ -5,7 +5,7 @@ import { Feather } from "@expo/vector-icons";
 import { Controller } from "react-hook-form";
 import AuthHeader from "@/shared/ui/atom/AuthHeader";
 import AppButton from "@/shared/ui/atom/AppButton";
-import { AppTextInput } from "@/shared/ui/atom";
+import { AppKeyboardAvoidingView, AppTextInput } from "@/shared/ui/atom";
 import {
   COLORS,
   Sizes,
@@ -25,81 +25,83 @@ const ResetPassword = () => {
 
   return (
     <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={styles.scrollContent}
-      >
-        <AuthHeader title={header.title} description={header.subtitle} />
+      <AppKeyboardAvoidingView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={styles.scrollContent}
+        >
+          <AuthHeader title={header.title} description={header.subtitle} />
 
-        <View style={styles.body}>
-          <View style={styles.form}>
-            <Controller
-              control={control}
-              name="password"
-              render={({ field: { value, onChange, onBlur } }) => (
-                <AppTextInput
-                  label={form.passwordLabel}
-                  required
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  error={errors.password?.message}
-                  placeholder={form.passwordPlaceholder}
-                  secureTextEntry
-                  textContentType="newPassword"
-                  autoComplete="new-password"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  autoFocus
-                  leftIcon={
-                    <Feather name="lock" size={ICON_SIZE} color={ICON_COLOR} />
-                  }
-                />
-              )}
-            />
-
-            <Controller
-              control={control}
-              name="confirmPassword"
-              render={({ field: { value, onChange, onBlur } }) => (
-                <AppTextInput
-                  label={form.confirmPasswordLabel}
-                  required
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  error={errors.confirmPassword?.message}
-                  placeholder={form.confirmPasswordPlaceholder}
-                  secureTextEntry
-                  textContentType="newPassword"
-                  autoComplete="new-password"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  leftIcon={
-                    <Feather name="lock" size={ICON_SIZE} color={ICON_COLOR} />
-                  }
-                />
-              )}
-            />
-          </View>
-
-          <View style={styles.spacer} />
-
-          <AppButton
-            onPress={handleDone}
-            icon={
-              <Feather
-                name="arrow-right"
-                size={ICON_SIZE}
-                color={COLORS.white}
+          <View style={styles.body}>
+            <View style={styles.form}>
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <AppTextInput
+                    label={form.passwordLabel}
+                    required
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    error={errors.password?.message}
+                    placeholder={form.passwordPlaceholder}
+                    secureTextEntry
+                    textContentType="newPassword"
+                    autoComplete="new-password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    autoFocus
+                    leftIcon={
+                      <Feather name="lock" size={ICON_SIZE} color={ICON_COLOR} />
+                    }
+                  />
+                )}
               />
-            }
-          >
-            {primaryCta.done}
-          </AppButton>
-        </View>
-      </ScrollView>
+
+              <Controller
+                control={control}
+                name="confirmPassword"
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <AppTextInput
+                    label={form.confirmPasswordLabel}
+                    required
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    error={errors.confirmPassword?.message}
+                    placeholder={form.confirmPasswordPlaceholder}
+                    secureTextEntry
+                    textContentType="newPassword"
+                    autoComplete="new-password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    leftIcon={
+                      <Feather name="lock" size={ICON_SIZE} color={ICON_COLOR} />
+                    }
+                  />
+                )}
+              />
+            </View>
+
+            <View style={styles.spacer} />
+
+            <AppButton
+              onPress={handleDone}
+              icon={
+                <Feather
+                  name="arrow-right"
+                  size={ICON_SIZE}
+                  color={COLORS.white}
+                />
+              }
+            >
+              {primaryCta.done}
+            </AppButton>
+          </View>
+        </ScrollView>
+      </AppKeyboardAvoidingView>
     </SafeAreaView>
   );
 };

@@ -5,7 +5,12 @@ import { Feather } from "@expo/vector-icons";
 import { Controller } from "react-hook-form";
 import AuthHeader from "@/shared/ui/atom/AuthHeader";
 import AppButton from "@/shared/ui/atom/AppButton";
-import { AppBackButton, AppText, AppTextInput } from "@/shared/ui/atom";
+import {
+  AppBackButton,
+  AppKeyboardAvoidingView,
+  AppText,
+  AppTextInput,
+} from "@/shared/ui/atom";
 import {
   COLORS,
   Sizes,
@@ -38,76 +43,80 @@ const ForgotPassword = () => {
 
   return (
     <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={styles.scrollContent}
-      >
-        <View style={styles.backRow}>
-          <AppBackButton label={goBack} onPress={handleGoBack} />
-        </View>
-
-        <AuthHeader title={header.title} description={header.subtitle} />
-
-        <View style={styles.body}>
-          <View style={styles.form}>
-            <Controller
-              control={control}
-              name="identifier"
-              render={({ field: { value, onChange, onBlur } }) => (
-                <AppTextInput
-                  label={isPhone ? form.phoneLabel : form.emailLabel}
-                  required
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  error={errors.identifier?.message}
-                  placeholder={
-                    isPhone ? form.phonePlaceholder : form.emailPlaceholder
-                  }
-                  keyboardType={isPhone ? "phone-pad" : "email-address"}
-                  textContentType={isPhone ? "telephoneNumber" : "emailAddress"}
-                  autoComplete={isPhone ? "tel" : "email"}
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  autoFocus
-                  leftIcon={
-                    <Feather
-                      name={isPhone ? "phone" : "mail"}
-                      size={ICON_SIZE}
-                      color={getColorAlphaChannel("textSecondary")}
-                    />
-                  }
-                />
-              )}
-            />
-
-            <AppText
-              variant="h6"
-              color={getColorAlphaChannel("textSecondary")}
-              style={styles.toggle}
-              onPress={handleToggleMethod}
-            >
-              {toggleLabel}
-            </AppText>
+      <AppKeyboardAvoidingView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={styles.scrollContent}
+        >
+          <View style={styles.backRow}>
+            <AppBackButton label={goBack} onPress={handleGoBack} />
           </View>
 
-          <View style={styles.spacer} />
+          <AuthHeader title={header.title} description={header.subtitle} />
 
-          <AppButton
-            onPress={handleReset}
-            icon={
-              <Feather
-                name="arrow-right"
-                size={ICON_SIZE}
-                color={COLORS.white}
+          <View style={styles.body}>
+            <View style={styles.form}>
+              <Controller
+                control={control}
+                name="identifier"
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <AppTextInput
+                    label={isPhone ? form.phoneLabel : form.emailLabel}
+                    required
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    error={errors.identifier?.message}
+                    placeholder={
+                      isPhone ? form.phonePlaceholder : form.emailPlaceholder
+                    }
+                    keyboardType={isPhone ? "phone-pad" : "email-address"}
+                    textContentType={
+                      isPhone ? "telephoneNumber" : "emailAddress"
+                    }
+                    autoComplete={isPhone ? "tel" : "email"}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    autoFocus
+                    leftIcon={
+                      <Feather
+                        name={isPhone ? "phone" : "mail"}
+                        size={ICON_SIZE}
+                        color={getColorAlphaChannel("textSecondary")}
+                      />
+                    }
+                  />
+                )}
               />
-            }
-          >
-            {primaryCta.reset}
-          </AppButton>
-        </View>
-      </ScrollView>
+
+              <AppText
+                variant="h6"
+                color={getColorAlphaChannel("textSecondary")}
+                style={styles.toggle}
+                onPress={handleToggleMethod}
+              >
+                {toggleLabel}
+              </AppText>
+            </View>
+
+            <View style={styles.spacer} />
+
+            <AppButton
+              onPress={handleReset}
+              icon={
+                <Feather
+                  name="arrow-right"
+                  size={ICON_SIZE}
+                  color={COLORS.white}
+                />
+              }
+            >
+              {primaryCta.reset}
+            </AppButton>
+          </View>
+        </ScrollView>
+      </AppKeyboardAvoidingView>
     </SafeAreaView>
   );
 };
