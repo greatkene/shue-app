@@ -1,6 +1,6 @@
 import { Image, StyleSheet, View } from "react-native";
 import React, { memo } from "react";
-import { Sizes, getColorAlphaChannel } from "@/shared/theme";
+import { Sizes, getColorAlphaChannel, RPW } from "@/shared/theme";
 import { AppText } from "@/shared/ui/atom";
 import AppButton from "@/shared/ui/atom/AppButton";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -19,6 +19,13 @@ const Landing = () => {
           style={[styles.landingImageStyle]}
           resizeMode="cover"
         />
+        <View style={[styles.logoOverlayStyle]}>
+          <Image
+            source={require("@/assets/images/shue-logo-bg.png")}
+            style={[styles.logoStyle]}
+            resizeMode="contain"
+          />
+        </View>
       </View>
       <View style={[styles.bottomSectionStyle]}>
         <AppText
@@ -64,6 +71,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
+  },
+  logoOverlayStyle: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logoStyle: {
+    width: RPW(55),
+    height: RPW(55),
   },
   bottomSectionStyle: {
     borderRadius: Sizes.xxl,
