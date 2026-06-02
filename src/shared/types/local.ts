@@ -1,5 +1,6 @@
 import { ButtonVariant, TypographyVariant } from "../theme/tokens";
 import type {
+  KeyboardAvoidingViewProps,
   StyleProp,
   TextInputProps,
   TextProps,
@@ -83,6 +84,10 @@ export interface AppOtpInputProps {
   error?: string;
   autoFocus?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
+}
+
+export interface AppKeyboardAvoidingViewProps extends KeyboardAvoidingViewProps {
+  children: React.ReactNode;
 }
 
 export interface IconProps {

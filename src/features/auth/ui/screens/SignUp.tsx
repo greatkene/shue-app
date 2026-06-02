@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { memo } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { AppBackButton } from "@/shared/ui/atom";
+import { AppBackButton, AppKeyboardAvoidingView } from "@/shared/ui/atom";
 import If from "@/shared/ui/atom/If";
 import { Sizes, getColorAlphaChannel } from "@/shared/theme";
 import SignUpStepper from "../components/SignUpStepper";
@@ -26,27 +26,29 @@ const SignUp = () => {
 
   return (
     <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={styles.content}
-      >
-        <AppBackButton label={backLabel} onPress={handleGoBack} />
+      <AppKeyboardAvoidingView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={styles.content}
+        >
+          <AppBackButton label={backLabel} onPress={handleGoBack} />
 
-        <SignUpStepper steps={STEPS} currentStep={currentStep} />
+          <SignUpStepper steps={STEPS} currentStep={currentStep} />
 
-        <If condition={currentStep === "information"}>
-          <InformationStep {...information} />
-        </If>
+          <If condition={currentStep === "information"}>
+            <InformationStep {...information} />
+          </If>
 
-        <If condition={currentStep === "verification"}>
-          <VerificationStep {...verification} />
-        </If>
+          <If condition={currentStep === "verification"}>
+            <VerificationStep {...verification} />
+          </If>
 
-        <If condition={currentStep === "finish"}>
-          <FinishStep {...finish} />
-        </If>
-      </ScrollView>
+          <If condition={currentStep === "finish"}>
+            <FinishStep {...finish} />
+          </If>
+        </ScrollView>
+      </AppKeyboardAvoidingView>
     </SafeAreaView>
   );
 };
