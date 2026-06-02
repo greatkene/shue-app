@@ -1,9 +1,9 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { memo } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { AppBackButton, AppKeyboardAvoidingView } from "@/shared/ui/atom";
+import { Screen } from "@/shared/ui/templates";
+import { AppBackButton, KeyboardAwareScroll } from "@/shared/ui/atom";
 import If from "@/shared/ui/atom/If";
-import { Sizes, getColorAlphaChannel } from "@/shared/theme";
+import { Sizes } from "@/shared/theme";
 import SignUpStepper from "../components/SignUpStepper";
 import InformationStep from "../components/InformationStep";
 import VerificationStep from "../components/VerificationStep";
@@ -21,12 +21,18 @@ const STEPS: ReadonlyArray<SignUpStepItem> = [
 ];
 
 const SignUp = () => {
-  const { currentStep, backLabel, handleGoBack, information, verification, finish } =
-    useSignUp();
+  const {
+    currentStep,
+    backLabel,
+    handleGoBack,
+    information,
+    verification,
+    finish,
+  } = useSignUp();
 
   return (
-    <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <AppKeyboardAvoidingView>
+    <Screen>
+      <KeyboardAwareScroll>
         <ScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
@@ -48,18 +54,14 @@ const SignUp = () => {
             <FinishStep {...finish} />
           </If>
         </ScrollView>
-      </AppKeyboardAvoidingView>
-    </SafeAreaView>
+      </KeyboardAwareScroll>
+    </Screen>
   );
 };
 
 export default memo(SignUp);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: getColorAlphaChannel("background"),
-  },
   content: {
     flexGrow: 1,
     paddingHorizontal: Sizes.padding,

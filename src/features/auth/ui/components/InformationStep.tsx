@@ -33,10 +33,10 @@ const InformationStep: React.FC<InformationStepProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.headerBlock}>
-        <AppText variant="h1" color={COLORS.text}>
+        <AppText variant="h2" color={COLORS.text}>
           {header.title}
         </AppText>
-        <AppText variant="body1" color={COLORS.textSecondary}>
+        <AppText variant="label" color={COLORS.textSecondary}>
           {header.subtitle}
         </AppText>
       </View>

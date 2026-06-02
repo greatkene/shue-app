@@ -1,11 +1,11 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { memo } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Screen } from "@/shared/ui/templates";
 import { Feather } from "@expo/vector-icons";
 import { Controller } from "react-hook-form";
 import AuthHeader from "@/shared/ui/atom/AuthHeader";
 import AppButton from "@/shared/ui/atom/AppButton";
-import { AppKeyboardAvoidingView, AppTextInput } from "@/shared/ui/atom";
+import { AppTextInput, KeyboardAwareScroll } from "@/shared/ui/atom";
 import {
   COLORS,
   Sizes,
@@ -24,8 +24,8 @@ const ResetPassword = () => {
   const { control, errors, handleDone } = useResetPassword();
 
   return (
-    <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <AppKeyboardAvoidingView>
+    <Screen>
+      <KeyboardAwareScroll>
         <ScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
@@ -54,7 +54,11 @@ const ResetPassword = () => {
                     autoCorrect={false}
                     autoFocus
                     leftIcon={
-                      <Feather name="lock" size={ICON_SIZE} color={ICON_COLOR} />
+                      <Feather
+                        name="lock"
+                        size={ICON_SIZE}
+                        color={ICON_COLOR}
+                      />
                     }
                   />
                 )}
@@ -78,7 +82,11 @@ const ResetPassword = () => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     leftIcon={
-                      <Feather name="lock" size={ICON_SIZE} color={ICON_COLOR} />
+                      <Feather
+                        name="lock"
+                        size={ICON_SIZE}
+                        color={ICON_COLOR}
+                      />
                     }
                   />
                 )}
@@ -101,18 +109,14 @@ const ResetPassword = () => {
             </AppButton>
           </View>
         </ScrollView>
-      </AppKeyboardAvoidingView>
-    </SafeAreaView>
+      </KeyboardAwareScroll>
+    </Screen>
   );
 };
 
 export default memo(ResetPassword);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: getColorAlphaChannel("background"),
-  },
   scrollContent: {
     flexGrow: 1,
   },

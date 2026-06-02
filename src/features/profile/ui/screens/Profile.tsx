@@ -1,11 +1,14 @@
 import { StyleSheet, View } from "react-native";
 import { AppText } from "@/shared/ui/atom";
+import { Screen } from "@/shared/ui/templates";
 
 const Profile = () => {
   return (
-    <View>
-      <AppText>Profile</AppText>
-    </View>
+    <Screen>
+      <View>
+        <AppText>Profile</AppText>
+      </View>
+    </Screen>
   );
 };
 

@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { memo, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Screen } from "@/shared/ui/templates";
 import AuthHeader from "@/shared/ui/atom/AuthHeader";
-import { Sizes, getColorAlphaChannel } from "@/shared/theme";
+import { Sizes } from "@/shared/theme";
 import AppButton from "@/shared/ui/atom/AppButton";
 import RoleCard from "../components/RoleCard";
 import { RoleValue } from "../../types";
@@ -17,11 +17,8 @@ const Role = () => {
   const { handleContinue } = useRoleNavigation();
 
   return (
-    <SafeAreaView edges={["top", "bottom"]} style={[styles.container]}>
-      <AuthHeader
-        title={authHeader.title}
-        description={authHeader.subtitle}
-      />
+    <Screen>
+      <AuthHeader title={authHeader.title} description={authHeader.subtitle} />
       <View style={[styles.contentContainer]}>
         <ScrollView
           showsHorizontalScrollIndicator={false}
@@ -43,17 +40,13 @@ const Role = () => {
       <View style={[styles.buttonContainer]}>
         <AppButton onPress={handleContinue}>{primaryCta.continue}</AppButton>
       </View>
-    </SafeAreaView>
+    </Screen>
   );
 };
 
 export default memo(Role);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: getColorAlphaChannel("background"),
-  },
   contentContainer: {
     flex: 1,
   },
@@ -64,5 +57,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     paddingHorizontal: Sizes.padding,
+    paddingBottom: Sizes.padding,
   },
 });

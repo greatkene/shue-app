@@ -1,9 +1,9 @@
-export * from './AppText'
-export * from './If'
-export { default as AppLabel } from './AppLabel'
-export { default as AppTextInput } from './AppTextInput'
-export { default as AppCheckbox } from './AppCheckbox'
-export { default as AppDivider } from './AppDivider'
-export { default as AppBackButton } from './AppBackButton'
-export { default as AppOtpInput } from './AppOtpInput'
-export { default as AppKeyboardAvoidingView } from './AppKeyboardAvoidingView'
+export * from "./AppText";
+export * from "./If";
+export { default as AppLabel } from "./AppLabel";
+export { default as AppTextInput } from "./AppTextInput";
+export { default as AppCheckbox } from "./AppCheckbox";
+export { default as AppDivider } from "./AppDivider";
+export { default as AppBackButton } from "./AppBackButton";
+export { default as AppOtpInput } from "./AppOtpInput";
+export { KeyboardAwareScroll } from "./KeyboardAwareScroll";

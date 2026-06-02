@@ -27,7 +27,7 @@ const VerifyOtpStep: React.FC<VerifyOtpStepProps> = ({
       </View>
 
       <View style={styles.headerBlock}>
-        <AppText variant="h1" color={COLORS.text} style={styles.centerText}>
+        <AppText variant="h2" color={COLORS.text} style={styles.centerText}>
           {verifyOtp.title}
         </AppText>
         <AppText

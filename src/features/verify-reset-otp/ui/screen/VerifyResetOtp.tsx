@@ -1,14 +1,14 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { memo } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Screen } from "@/shared/ui/templates";
 import { Feather } from "@expo/vector-icons";
 import { Controller } from "react-hook-form";
 import AppButton from "@/shared/ui/atom/AppButton";
 import {
   AppBackButton,
-  AppKeyboardAvoidingView,
   AppOtpInput,
   AppText,
+  KeyboardAwareScroll,
 } from "@/shared/ui/atom";
 import {
   COLORS,
@@ -35,8 +35,8 @@ const VerifyResetOtp = () => {
   } = useVerifyResetOtp();
 
   return (
-    <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <AppKeyboardAvoidingView>
+    <Screen>
+      <KeyboardAwareScroll>
         <ScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
@@ -124,18 +124,14 @@ const VerifyResetOtp = () => {
             </AppButton>
           </View>
         </ScrollView>
-      </AppKeyboardAvoidingView>
-    </SafeAreaView>
+      </KeyboardAwareScroll>
+    </Screen>
   );
 };
 
 export default memo(VerifyResetOtp);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: getColorAlphaChannel("background"),
-  },
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: Sizes.padding,

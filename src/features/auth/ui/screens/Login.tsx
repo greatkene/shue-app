@@ -1,11 +1,11 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { memo, useMemo } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Screen } from "@/shared/ui/templates";
 import { Feather } from "@expo/vector-icons";
 import { Controller } from "react-hook-form";
 import AuthHeader from "@/shared/ui/atom/AuthHeader";
 import AppButton from "@/shared/ui/atom/AppButton";
-import { AppKeyboardAvoidingView, AppText, AppTextInput } from "@/shared/ui/atom";
+import { AppText, AppTextInput, KeyboardAwareScroll } from "@/shared/ui/atom";
 import {
   COLORS,
   Sizes,
@@ -38,8 +38,8 @@ const Login = () => {
   const isPhone = useMemo(() => method === "phone", [method]);
 
   return (
-    <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
-      <AppKeyboardAvoidingView>
+    <Screen>
+      <KeyboardAwareScroll>
         <ScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
@@ -152,18 +152,14 @@ const Login = () => {
             </AppButton>
           </View>
         </ScrollView>
-      </AppKeyboardAvoidingView>
-    </SafeAreaView>
+      </KeyboardAwareScroll>
+    </Screen>
   );
 };
 
 export default memo(Login);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: getColorAlphaChannel("background"),
-  },
   scrollContent: {
     flexGrow: 1,
   },

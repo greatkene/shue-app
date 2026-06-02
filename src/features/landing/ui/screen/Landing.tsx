@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { Sizes, getColorAlphaChannel, RPW } from "@/shared/theme";
 import { AppText } from "@/shared/ui/atom";
 import AppButton from "@/shared/ui/atom/AppButton";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Screen } from "@/shared/ui/templates";
 import useLandingNavigation from "../hooks/use-landing-navigation";
 import { landingScreenStrings } from "../../strings";
 
@@ -12,7 +12,7 @@ const { hero, primaryCta, footer } = landingScreenStrings;
 const Landing = () => {
   const { handleContinue, handleLogin } = useLandingNavigation();
   return (
-    <SafeAreaView edges={["top", "bottom"]} style={[styles.container]}>
+    <Screen>
       <View style={[styles.topSectionStyle]}>
         <Image
           source={require("@/assets/images/landing-image.png")}
@@ -53,17 +53,13 @@ const Landing = () => {
           </AppText>
         </AppText>
       </View>
-    </SafeAreaView>
+    </Screen>
   );
 };
 
 export default memo(Landing);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: getColorAlphaChannel("background"),
-  },
   topSectionStyle: {
     flex: 1,
   },

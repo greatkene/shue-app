@@ -24,7 +24,7 @@ const FinishStep: React.FC<FinishStepProps> = ({ onLogin }) => {
         </View>
 
         <AppText
-          variant="h1"
+          variant="h2"
           color={COLORS.textSecondary}
           style={styles.centerText}
         >

@@ -1,4 +1,5 @@
 import { ButtonVariant, TypographyVariant } from "../theme/tokens";
+import type { NativeSafeAreaViewProps } from "react-native-safe-area-context";
 import type {
   KeyboardAvoidingViewProps,
   StyleProp,
@@ -86,7 +87,7 @@ export interface AppOtpInputProps {
   containerStyle?: StyleProp<ViewStyle>;
 }
 
-export interface AppKeyboardAvoidingViewProps extends KeyboardAvoidingViewProps {
+export interface ScreenProps extends NativeSafeAreaViewProps {
   children: React.ReactNode;
 }
 

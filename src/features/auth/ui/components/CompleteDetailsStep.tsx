@@ -26,7 +26,7 @@ const CompleteDetailsStep: React.FC<CompleteDetailsStepProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.headerBlock}>
-        <AppText variant="h1" color={COLORS.text}>
+        <AppText variant="h2" color={COLORS.text}>
           {completeDetails.title}
         </AppText>
         <AppText variant="body1" color={COLORS.textSecondary}>
