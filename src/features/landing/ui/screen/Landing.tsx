@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import React, { memo } from "react";
 import { Sizes, getColorAlphaChannel } from "@/shared/theme";
 import { AppText } from "@/shared/ui/atom";
@@ -13,7 +13,13 @@ const Landing = () => {
   const { handleContinue, handleLogin } = useLandingNavigation();
   return (
     <SafeAreaView edges={["top", "bottom"]} style={[styles.container]}>
-      <View style={[styles.topSectionStyle]}></View>
+      <View style={[styles.topSectionStyle]}>
+        <Image
+          source={require("@/assets/images/landing-image.png")}
+          style={[styles.landingImageStyle]}
+          resizeMode="cover"
+        />
+      </View>
       <View style={[styles.bottomSectionStyle]}>
         <AppText
           style={[styles.titleTextStyle]}
@@ -53,6 +59,11 @@ const styles = StyleSheet.create({
   },
   topSectionStyle: {
     flex: 1,
+  },
+  landingImageStyle: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
   },
   bottomSectionStyle: {
     borderRadius: Sizes.xxl,
