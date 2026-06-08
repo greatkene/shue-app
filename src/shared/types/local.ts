@@ -74,6 +74,15 @@ export interface AppDividerProps {
   style?: StyleProp<ViewStyle>;
 }
 
+export interface AppChipProps {
+  label: string;
+  selected?: boolean;
+  /** Accent color; chips without one fall back to a neutral treatment. */
+  color?: string;
+  onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
+}
+
 export interface AppBackButtonProps extends TouchableOpacityProps {
   label: string;
 }

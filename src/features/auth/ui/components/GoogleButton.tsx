@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     gap: Sizes.small,
     borderWidth: 1,
     borderColor: COLORS.border,
-    borderRadius: Sizes.xxxl,
-    paddingVertical: Sizes.medium,
+    borderRadius: Sizes.large,
+    paddingVertical: Sizes.small,
     paddingHorizontal: Sizes.xxl,
   },
 });

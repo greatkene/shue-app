@@ -38,7 +38,9 @@ const Role = () => {
         </ScrollView>
       </View>
       <View style={[styles.buttonContainer]}>
-        <AppButton onPress={handleContinue}>{primaryCta.continue}</AppButton>
+        <AppButton onPress={() => handleContinue(selectedRole)}>
+          {primaryCta.continue}
+        </AppButton>
       </View>
     </Screen>
   );

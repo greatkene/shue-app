@@ -65,22 +65,84 @@ export const signUpScreenStrings = {
   backToRoles: "Go Back To Roles",
   goBack: "Go Back",
   steps: {
+    signUp: "Sign Up",
     information: "Information",
     verification: "Verification",
     finish: "Finish",
   },
-  header: {
-    title: "Create Your Account",
-    subtitle: "Enter Your Details To Create Your Account",
+  /* Centered flow header shown from the Information step onward. */
+  flowTitle: {
+    buyer: "Become A Buyer",
+    seller: "Become A Seller",
+  },
+  /* The first ("Sign Up") step is role-aware — copy switches on the role
+     chosen on the Role screen before landing here. */
+  signUp: {
+    buyer: {
+      title: "Create Buyer Account",
+      subtitle: "Enter Your Details To Create Your Account",
+      fullNameLabel: "Full Name",
+      fullNamePlaceholder: "Enter your name",
+      emailLabel: "Email Address",
+      emailPlaceholder: "Enter your email",
+      phoneLabel: "Phone Number",
+      phonePlaceholder: "Enter your number",
+    },
+    seller: {
+      title: "Create Seller Account",
+      subtitle: "Enter Your Details To Create Your Account",
+      fullNameLabel: "Sellers Full Name",
+      fullNamePlaceholder: "Enter your name",
+      emailLabel: "Business Email Address",
+      emailPlaceholder: "Enter your business email",
+      phoneLabel: "Business Phone Number",
+      phonePlaceholder: "Enter your business number",
+    },
   },
   form: {
-    fullNameLabel: "Full Name",
-    fullNamePlaceholder: "Enter your name",
-    emailLabel: "Email Address",
-    emailPlaceholder: "Enter your email",
-    phoneLabel: "Phone Number",
-    phonePlaceholder: "Enter your number",
     agreeToTerms: "I Agree To The Terms Of Services And Privacy",
+  },
+  /* Seller profile collected on the Information step. */
+  information: {
+    title: "Tell Us About Yourself",
+    subtitle:
+      "Help Buyers Know Who They're Buying From. This Info Appears On Your Public Profile.",
+    shopNameLabel: "Seller / Shop Name",
+    shopNamePlaceholder: "E.G Smart Store",
+    bioLabel: "Bio",
+    bioPlaceholder: "Tell Buyers About Your Shop, What You Sell Etc",
+    addressLabel: "Enter Address",
+    addressPlaceholder: "Enter Store Address",
+    phoneLabel: "Business Phone Number",
+    phonePlaceholder: "Enter your phone number",
+    offeringsTitle: "What Will You Offer?",
+    offerings: {
+      reseller: "Reseller",
+      customArtist: "Custom Artist",
+      shoeCleaning: "Shoe Cleaning",
+      footHealth: "Foot Health",
+      shoeRestoration: "Shoe Restoration",
+      store: "Store",
+    },
+  },
+  /* Address picker opened from the Information step's address field. */
+  selectAddress: {
+    title: "Select Address",
+    searchPlaceholder: "Search Address",
+    emptyState: "No addresses match your search",
+  },
+  /* Government-ID upload collected on the Verification step. */
+  verification: {
+    title: "Upload Your ID",
+    subtitle:
+      "We Need A Government-Issued Photo ID To Verify Your Identity As A Reseller. This Is Required By California Law For Marketplace Sellers.",
+    frontTitle: "Front Of ID",
+    backTitle: "Back Of ID",
+    idHint: "Driver's License, State ID, Or Passport",
+    uploadCta: "Tap To Upload Or Take Photo",
+    securityNote:
+      "Your ID Is Encrypted And Stored Securely. It Is Only Used For Identity Verification And Never Shared With Buyers.",
+    continueCta: "Continue Shopping",
   },
   verifyOtp: {
     title: "Verify Details",
@@ -100,12 +162,48 @@ export const signUpScreenStrings = {
     confirmPasswordPlaceholder: "Confirm your password",
   },
   finish: {
-    title: "Account Verified Successfully",
-    subtitle: "your have been created and verified",
-    login: "Login",
+    headerTitle: "Under Review",
+    pending: {
+      title: "Under Review",
+      subtitle:
+        "Your Application Has Been Submitted. We'll Verify Within 24 Hours.",
+      cardTitle: "Verification In Progress",
+      cardSubtitle: "Submitted Today · Up To 24 Hours",
+      expectedApprovalLabel: "Expected Approval By ",
+      expectedApprovalValue: "Tomorrow · 9:41 AM",
+      footerNote: "You Will Get An Sms And An Email When Verification Is Done",
+    },
+    verified: {
+      title: "You're Verified!",
+      subtitle:
+        "Your Seller Account Is Active. Start Listing, Run Auctions, Offer Services.",
+      cardTitle: "Verified Seller Badge",
+      cardSubtitle: "Displayed On Your Profile And All Listings",
+      unlockedTitle: "Now Unlocked",
+      cta: "Go To Dashboard",
+      unlocked: [
+        {
+          title: "List Shoes & Products",
+          subtitle: "Fixed Price, Offers & Pre-Orders",
+        },
+        {
+          title: "Run Live Auctions",
+          subtitle: "Set Start Time, Reserve, Bid Increments",
+        },
+        {
+          title: "Offer Services",
+          subtitle: "Cleaning, Custom Art, Restoration",
+        },
+        {
+          title: "Receive Escrow Payouts",
+          subtitle: "Funds Released Automatically On Delivery",
+        },
+      ],
+    },
   },
   primaryCta: {
     continue: "Continue",
+    next: "Next",
   },
   divider: {
     or: "Or",
