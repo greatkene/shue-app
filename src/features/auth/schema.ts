@@ -57,3 +57,11 @@ export const completeDetailsSchema = z
     path: ["confirmPassword"],
     message: "Passwords do not match",
   });
+
+export const sellerInformationSchema = z.object({
+  shopName: z.string().min(2, "Enter your seller or shop name"),
+  bio: z.string().min(10, "Tell buyers a little about your shop"),
+  address: z.string().min(3, "Enter your store address"),
+  phone: z.string().regex(PHONE_REGEX, "Enter a valid phone number"),
+  offerings: z.array(z.string()).min(1, "Select at least one offering"),
+});

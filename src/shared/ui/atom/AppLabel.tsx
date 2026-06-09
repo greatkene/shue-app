@@ -4,8 +4,8 @@ import { AppLabelProps } from "@/shared/types";
 import { COLORS, Sizes } from "@/shared/theme";
 import { AppText } from "./AppText";
 
-/** Orange mark used to flag required fields. */
-const REQUIRED_MARK_COLOR = "#F97316";
+/** Brand-green mark used to flag required fields. */
+const REQUIRED_MARK_COLOR = COLORS.primary;
 
 const AppLabel: React.FC<AppLabelProps> = ({
   label,

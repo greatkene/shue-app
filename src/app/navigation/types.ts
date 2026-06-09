@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import type { RoleValue } from "@/features/role/types";
 
 export type RootStackParamList = {
   MainTabs: undefined;
@@ -12,7 +13,7 @@ export type AuthStackParamList = {
   EmailLogin: undefined;
   LoginWithBiometrics: undefined;
   Role: undefined;
-  SignUp: undefined;
+  SignUp: { role?: RoleValue } | undefined;
   OTPVerification: { email: string; reference: string };
   ForgotPassword: undefined;
   VerifyResetOTP: { email: string; reference: string };

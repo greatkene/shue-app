@@ -1,25 +1,21 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { memo } from "react";
 import { Feather } from "@expo/vector-icons";
 import { Controller } from "react-hook-form";
 import AppButton from "@/shared/ui/atom/AppButton";
-import {
-  AppCheckbox,
-  AppDivider,
-  AppText,
-  AppTextInput,
-} from "@/shared/ui/atom";
+import { AppText, AppTextInput } from "@/shared/ui/atom";
 import {
   COLORS,
   Sizes,
   getColorAlphaChannel,
   moderateScale,
 } from "@/shared/theme";
-import GoogleButton from "./GoogleButton";
+import OfferingChips from "./OfferingChips";
 import { InformationStepProps } from "../../types";
 import { signUpScreenStrings } from "../../strings";
+import { SELLER_OFFERINGS } from "../../variables";
 
-const { header, form, primaryCta, divider, social } = signUpScreenStrings;
+const { information, primaryCta } = signUpScreenStrings;
 
 const ICON_SIZE = moderateScale(20);
 const ICON_COLOR = getColorAlphaChannel("textSecondary");
@@ -28,37 +24,34 @@ const InformationStep: React.FC<InformationStepProps> = ({
   control,
   errors,
   onContinue,
-  onGoogleSignUp,
+  onOpenAddress,
 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerBlock}>
         <AppText variant="h2" color={COLORS.text}>
-          {header.title}
+          {information.title}
         </AppText>
-        <AppText variant="label" color={COLORS.textSecondary}>
-          {header.subtitle}
+        <AppText variant="body2" color={COLORS.textSecondary}>
+          {information.subtitle}
         </AppText>
       </View>
 
       <View style={styles.form}>
         <Controller
           control={control}
-          name="fullName"
+          name="shopName"
           render={({ field: { value, onChange, onBlur } }) => (
             <AppTextInput
-              label={form.fullNameLabel}
+              label={information.shopNameLabel}
               required
               value={value}
               onChangeText={onChange}
               onBlur={onBlur}
-              error={errors.fullName?.message}
-              placeholder={form.fullNamePlaceholder}
-              textContentType="name"
-              autoComplete="name"
+              error={errors.shopName?.message}
+              placeholder={information.shopNamePlaceholder}
               autoCapitalize="words"
               autoCorrect={false}
-              autoFocus
               leftIcon={
                 <Feather name="user" size={ICON_SIZE} color={ICON_COLOR} />
               }
@@ -68,25 +61,47 @@ const InformationStep: React.FC<InformationStepProps> = ({
 
         <Controller
           control={control}
-          name="email"
+          name="bio"
           render={({ field: { value, onChange, onBlur } }) => (
             <AppTextInput
-              label={form.emailLabel}
+              label={information.bioLabel}
               required
               value={value}
               onChangeText={onChange}
               onBlur={onBlur}
-              error={errors.email?.message}
-              placeholder={form.emailPlaceholder}
-              keyboardType="email-address"
-              textContentType="emailAddress"
-              autoComplete="email"
-              autoCapitalize="none"
-              autoCorrect={false}
-              leftIcon={
-                <Feather name="mail" size={ICON_SIZE} color={ICON_COLOR} />
-              }
+              error={errors.bio?.message}
+              placeholder={information.bioPlaceholder}
+              multiline
+              numberOfLines={5}
+              inputContainerStyle={styles.bioInputContainer}
+              style={styles.bioInput}
             />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="address"
+          render={({ field: { value } }) => (
+            <TouchableOpacity activeOpacity={0.8} onPress={onOpenAddress}>
+              <View pointerEvents="none">
+                <AppTextInput
+                  label={information.addressLabel}
+                  required
+                  value={value}
+                  editable={false}
+                  error={errors.address?.message}
+                  placeholder={information.addressPlaceholder}
+                  rightIcon={
+                    <Feather
+                      name="chevron-down"
+                      size={ICON_SIZE}
+                      color={ICON_COLOR}
+                    />
+                  }
+                />
+              </View>
+            </TouchableOpacity>
           )}
         />
 
@@ -95,13 +110,13 @@ const InformationStep: React.FC<InformationStepProps> = ({
           name="phone"
           render={({ field: { value, onChange, onBlur } }) => (
             <AppTextInput
-              label={form.phoneLabel}
+              label={information.phoneLabel}
               required
               value={value}
               onChangeText={onChange}
               onBlur={onBlur}
               error={errors.phone?.message}
-              placeholder={form.phonePlaceholder}
+              placeholder={information.phonePlaceholder}
               keyboardType="phone-pad"
               textContentType="telephoneNumber"
               autoComplete="tel"
@@ -112,16 +127,25 @@ const InformationStep: React.FC<InformationStepProps> = ({
             />
           )}
         />
+      </View>
+
+      <View style={styles.offeringsBlock}>
+        <View style={styles.offeringsHeader}>
+          <AppText variant="h6" color={COLORS.text}>
+            {information.offeringsTitle}
+          </AppText>
+          <View style={styles.offeringsLine} />
+        </View>
 
         <Controller
           control={control}
-          name="agreeToTerms"
+          name="offerings"
           render={({ field: { value, onChange } }) => (
-            <AppCheckbox
-              checked={value}
+            <OfferingChips
+              options={SELLER_OFFERINGS}
+              value={value}
               onChange={onChange}
-              label={form.agreeToTerms}
-              error={errors.agreeToTerms?.message}
+              error={errors.offerings?.message}
             />
           )}
         />
@@ -133,15 +157,8 @@ const InformationStep: React.FC<InformationStepProps> = ({
           <Feather name="arrow-right" size={ICON_SIZE} color={COLORS.white} />
         }
       >
-        {primaryCta.continue}
+        {primaryCta.next}
       </AppButton>
-
-      <AppDivider label={divider.or} style={styles.divider} />
-
-      <GoogleButton
-        label={social.continueWithGoogle}
-        onPress={onGoogleSignUp}
-      />
     </View>
   );
 };
@@ -158,7 +175,26 @@ const styles = StyleSheet.create({
   form: {
     gap: Sizes.large,
   },
-  divider: {
-    marginVertical: Sizes.base,
+  bioInputContainer: {
+    alignItems: "flex-start",
+    minHeight: moderateScale(120),
+  },
+  bioInput: {
+    height: "100%",
+    minHeight: moderateScale(96),
+    textAlignVertical: "top",
+  },
+  offeringsBlock: {
+    gap: Sizes.medium,
+  },
+  offeringsHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: Sizes.medium,
+  },
+  offeringsLine: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: COLORS.border,
   },
 });
